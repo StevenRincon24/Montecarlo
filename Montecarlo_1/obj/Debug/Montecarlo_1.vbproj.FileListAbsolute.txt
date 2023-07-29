@@ -1,0 +1,13 @@
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\bin\Debug\Montecarlo_1.exe.config
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\bin\Debug\Montecarlo_1.exe
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\bin\Debug\Montecarlo_1.pdb
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\bin\Debug\Montecarlo_1.xml
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.AssemblyReference.cache
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.SuggestedBindingRedirects.cache
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.Form1.resources
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.Resources.resources
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.GenerateResource.cache
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.CoreCompileInputs.cache
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.exe
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.xml
+E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.pdb
