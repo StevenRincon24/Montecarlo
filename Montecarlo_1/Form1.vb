@@ -76,10 +76,10 @@
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
                 xAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
+                yAleatorio = limiteSuperior1 * rnd.NextDouble()
             Else
                 xAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio = ladoCuadrado * rnd.NextDouble()
+                yAleatorio = limiteSuperior1 * rnd.NextDouble()
             End If
 
 
@@ -119,10 +119,10 @@
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
                 xAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
+                yAleatorio200 = limiteSuperior1 * rnd.NextDouble()
             Else
                 xAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio200 = ladoCuadrado * rnd.NextDouble()
+                yAleatorio200 = limiteSuperior1 * rnd.NextDouble()
             End If
 
             ' Verificar si el punto aleatorio está debajo de la curva de la función
@@ -158,10 +158,10 @@
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
                 xAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
+                yAleatorio500 = limiteSuperior1 * rnd.NextDouble()
             Else
                 xAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio500 = ladoCuadrado * rnd.NextDouble()
+                yAleatorio500 = limiteSuperior1 * rnd.NextDouble()
             End If
 
             ' Verificar si el punto aleatorio está debajo de la curva de la función
@@ -198,10 +198,10 @@
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
                 xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
+                yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
             Else
                 xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio1000 = ladoCuadrado * rnd.NextDouble()
+                yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
             End If
 
             ' Verificar si el punto aleatorio está debajo de la curva de la función
