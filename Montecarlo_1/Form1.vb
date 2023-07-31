@@ -75,10 +75,10 @@
             Dim xAleatorio, yAleatorio As Double
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio = limiteSuperior1 * rnd.NextDouble()
+                xAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
+                yAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
             Else
-                xAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
+                xAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
                 yAleatorio = limiteSuperior1 * rnd.NextDouble()
             End If
 
@@ -198,7 +198,7 @@
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
                 xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
+                yAleatorio1000 = limiteSuperior1  * rnd.NextDouble()
             Else
                 xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
                 yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
@@ -226,7 +226,7 @@
         AreaAproximada = (areaConocida * cantidadPuntosDentro1000) / puntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
         Porcentaje = (Math.Abs(Diferencia / mathArea)) * puntos
-        ErrorAprox = (1 / Math.Sqrt(100)) * puntos
+        ErrorAprox = (1 / Math.Sqrt(puntos)) * puntos
 
 
         DataGridView4.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro1000, AreaAproximada, Diferencia, Porcentaje, ErrorAprox)
