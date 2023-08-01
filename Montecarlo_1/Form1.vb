@@ -78,7 +78,7 @@
                 xAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
                 yAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
             Else
-                xAleatorio = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
+                xAleatorio = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
                 yAleatorio = limiteSuperior1 * rnd.NextDouble()
             End If
 
@@ -106,11 +106,11 @@
         areaConocida = ladoCuadrado * ladoCuadrado
         AreaAproximada = (areaConocida * cantidadPuntosDentro100) / puntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * puntos
-        ErrorAprox = (1 / Math.Sqrt(puntos)) * puntos
+        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
+        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro100)) * 100
 
 
-        DataGridView1.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Porcentaje, ErrorAprox)
+        DataGridView1.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
 
 
         For i As Integer = 1 To 200
@@ -118,8 +118,8 @@
             Dim xAleatorio200, yAleatorio200 As Double
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio200 = limiteSuperior1 * rnd.NextDouble()
+                xAleatorio200 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
+                yAleatorio200 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
             Else
                 xAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
                 yAleatorio200 = limiteSuperior1 * rnd.NextDouble()
@@ -146,19 +146,19 @@
         areaConocida = ladoCuadrado * ladoCuadrado
         AreaAproximada = (areaConocida * cantidadPuntosDentro200) / puntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * puntos
-        ErrorAprox = (1 / Math.Sqrt(puntos)) * puntos
+        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
+        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro200)) * 100
 
 
-        DataGridView2.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Porcentaje, ErrorAprox)
+        DataGridView2.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
 
         For i As Integer = 1 To 500
             ' Generar coordenadas x e y aleatorias dentro del rango
             Dim xAleatorio500, yAleatorio500 As Double
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio500 = limiteSuperior1 * rnd.NextDouble()
+                xAleatorio500 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
+                yAleatorio500 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
             Else
                 xAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
                 yAleatorio500 = limiteSuperior1 * rnd.NextDouble()
@@ -185,11 +185,11 @@
         areaConocida = ladoCuadrado * ladoCuadrado
         AreaAproximada = (areaConocida * cantidadPuntosDentro500) / puntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * puntos
-        ErrorAprox = (1 / Math.Sqrt(puntos)) * puntos
+        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
+        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro500)) * 100
 
 
-        DataGridView3.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Porcentaje, ErrorAprox)
+        DataGridView3.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
 
 
         For i As Integer = 1 To 1000
@@ -197,8 +197,8 @@
             Dim xAleatorio1000, yAleatorio1000 As Double
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio1000 = limiteSuperior1  * rnd.NextDouble()
+                xAleatorio1000 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
+                yAleatorio1000 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
             Else
                 xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
                 yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
@@ -225,11 +225,11 @@
         areaConocida = ladoCuadrado * ladoCuadrado
         AreaAproximada = (areaConocida * cantidadPuntosDentro1000) / puntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * puntos
-        ErrorAprox = (1 / Math.Sqrt(puntos)) * puntos
+        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
+        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro1000)) * 100
 
 
-        DataGridView4.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro1000, AreaAproximada, Diferencia, Porcentaje, ErrorAprox)
+        DataGridView4.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro1000, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
 
 
     End Sub
@@ -257,20 +257,4 @@
 
         Return totalArea
     End Function
-
-    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
-
-    End Sub
-
-    Private Sub Chart200_Click(sender As Object, e As EventArgs) Handles Chart200.Click
-
-    End Sub
-
-    Private Sub Chart1000_Click(sender As Object, e As EventArgs) Handles Chart1000.Click
-
-    End Sub
-
-    Private Sub Chart500_Click(sender As Object, e As EventArgs) Handles Chart500.Click
-
-    End Sub
 End Class

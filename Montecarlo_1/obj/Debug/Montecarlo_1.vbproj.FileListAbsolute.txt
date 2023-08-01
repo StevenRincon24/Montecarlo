@@ -11,3 +11,16 @@ E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1
 E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.exe
 E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.xml
 E:\Universidad\9° Semestre\Simulacion\EjerciciosClase\Montecarlo_1\Montecarlo_1\obj\Debug\Montecarlo_1.pdb
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\bin\Debug\Montecarlo_1.exe.config
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\bin\Debug\Montecarlo_1.exe
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\bin\Debug\Montecarlo_1.pdb
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\bin\Debug\Montecarlo_1.xml
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.AssemblyReference.cache
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.SuggestedBindingRedirects.cache
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.Form1.resources
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.Resources.resources
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.GenerateResource.cache
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.vbproj.CoreCompileInputs.cache
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.exe
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.xml
+C:\Users\BPS-CVALDERRAMA\Source\Repos\Montecarlo\Montecarlo_1\obj\Debug\Montecarlo_1.pdb
