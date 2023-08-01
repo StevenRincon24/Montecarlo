@@ -4,6 +4,11 @@
     Dim totalArea As Double
     Dim ladoCuadrado As Double
     Dim AreaAproximada, Diferencia, Porcentaje, ErrorAprox, areaConocida As Double
+
+    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
+
+    End Sub
+
     Dim puntos As Integer
     Private Sub CienPuntos_Click(sender As Object, e As EventArgs) Handles CienPuntos.Click
 
