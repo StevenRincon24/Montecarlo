@@ -14,9 +14,11 @@
         chart.Series.Clear()
         ' Crear una nueva serie de datos para los puntos aleatorios
         Dim pasoFuncion As Double = (limiteSuperior1 - limiteInferior1) / (100 - 1)
+        ' Definir la serie para la función
         Dim seriesFuncion As New DataVisualization.Charting.Series()
         seriesFuncion.Name = "Valor Absoluto de x"
         seriesFuncion.ChartType = DataVisualization.Charting.SeriesChartType.Line
+        ' Definir la serie para los numeros aleatorios
         Dim seriesAleatorios As New DataVisualization.Charting.Series()
         seriesAleatorios.Name = "Puntos Aleatorios"
         seriesAleatorios.ChartType = DataVisualization.Charting.SeriesChartType.Point
