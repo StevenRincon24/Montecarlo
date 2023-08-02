@@ -95,6 +95,16 @@
         cantidadPuntosFuera = 0
     End Function
     Private Sub CienPuntos_Click(sender As Object, e As EventArgs) Handles CienPuntos.Click
+        If String.IsNullOrWhiteSpace(LimiteInferior.Text) Then
+            MessageBox.Show("El campo Limite Inferior no puede quedar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Verificar si el TextBox LimiteSuperior está vacío
+        If String.IsNullOrWhiteSpace(LimiteSuperior.Text) Then
+            MessageBox.Show("El campo Limite Superior no puede quedar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
         ' Obtener el texto de lo que se ingresa en el text x0
         limiteInferior1 = Double.Parse(LimiteInferior.Text)
         ' Obtener el texto de lo que se ingresa en el text x1
