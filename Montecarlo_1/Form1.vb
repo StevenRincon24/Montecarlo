@@ -4,55 +4,22 @@
     Dim totalArea As Double
     Dim ladoCuadrado As Double
     Dim AreaAproximada, Diferencia, Porcentaje, ErrorAprox, areaConocida As Double
-
-    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs)
-
-    End Sub
-
+    Dim limiteInferior1 As Double
+    Dim limiteSuperior1 As Double
+    Dim cantidadPuntosDentro, cantidadPuntosFuera As Integer
     Dim puntos As Integer
-    Private Sub CienPuntos_Click(sender As Object, e As EventArgs) Handles CienPuntos.Click
 
-        Dim cantidadPuntosDentro100, cantidadPuntosFuera100 As Integer
-        Dim cantidadPuntosDentro200, cantidadPuntosFuera200 As Integer
-        Dim cantidadPuntosDentro500, cantidadPuntosFuera500 As Integer
-        Dim cantidadPuntosDentro1000, cantidadPuntosFuera1000 As Integer
-
-        Dim limiteInferior1 As Double = Double.Parse(LimiteInferior.Text)
-        Dim limiteSuperior1 As Double = Double.Parse(LimiteSuperior.Text)
+    Function hacerPuntos(ByRef chart As DataVisualization.Charting.Chart, cantidadPuntos As Integer, limiteInferior1 As Double, limiteSuperior1 As Double)
+        ' Limpiar todas las series del chart
+        chart.Series.Clear()
+        ' Crear una nueva serie de datos para los puntos aleatorios
+        Dim pasoFuncion As Double = (limiteSuperior1 - limiteInferior1) / (100 - 1)
         Dim seriesFuncion As New DataVisualization.Charting.Series()
-
-
-        ' Limpiar las series anteriores (opcional)
-        Chart1.Series.Clear()
-        Chart200.Series.Clear()
-        Chart500.Series.Clear()
-        Chart1000.Series.Clear()
-
-        ' Crear una nueva serie de datos para la función original
-
         seriesFuncion.Name = "Valor Absoluto de x"
         seriesFuncion.ChartType = DataVisualization.Charting.SeriesChartType.Line
-
-        ' Crear una nueva serie de datos para los puntos aleatorios
         Dim seriesAleatorios As New DataVisualization.Charting.Series()
         seriesAleatorios.Name = "Puntos Aleatorios"
         seriesAleatorios.ChartType = DataVisualization.Charting.SeriesChartType.Point
-
-        Dim seriesAleatorios200 As New DataVisualization.Charting.Series()
-        seriesAleatorios200.Name = "Puntos Aleatorios 200"
-        seriesAleatorios200.ChartType = DataVisualization.Charting.SeriesChartType.Point
-
-        Dim seriesAleatorios500 As New DataVisualization.Charting.Series()
-        seriesAleatorios500.Name = "Puntos Aleatorios 500"
-        seriesAleatorios500.ChartType = DataVisualization.Charting.SeriesChartType.Point
-
-        Dim seriesAleatorios1000 As New DataVisualization.Charting.Series()
-        seriesAleatorios1000.Name = "Puntos Aleatorios 1000"
-        seriesAleatorios1000.ChartType = DataVisualization.Charting.SeriesChartType.Point
-
-        ' Calcular el paso entre cada punto para la función original
-        Dim pasoFuncion As Double = (limiteSuperior1 - limiteInferior1) / (100 - 1)
-
         ' Calcular y agregar los puntos y sus valores del valor absoluto de x para la función original
         Dim x As Double = limiteInferior1
         For i As Integer = 0 To 100 - 1
@@ -76,7 +43,7 @@
 
 
         ' Generar 100 puntos aleatorios dentro del cuadrado y agregarlos a la serie de puntos aleatorios
-        For i As Integer = 1 To 100
+        For i As Integer = 1 To cantidadPuntos
             Dim xAleatorio, yAleatorio As Double
             ' Generar coordenadas x e y aleatorias dentro del rango
             If limiteSuperior1 And limiteInferior1 > 0 Then
@@ -93,150 +60,84 @@
                 ' Agregar el punto a la serie de puntos aleatorios y pintarlo de rojo
                 seriesAleatorios.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio, yAleatorio) With {.Color = Color.Green})
                 ' Sumar uno a la cantidad de puntos que se encuentran bajo el area
-                cantidadPuntosDentro100 += 1
+                cantidadPuntosDentro += 1
 
             Else
                 ' Agregar el punto a la serie de puntos aleatorios y pintarlo de azul
                 seriesAleatorios.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio, yAleatorio) With {.Color = Color.Blue})
                 ' Sumar uno a la cantidad de puntos que se encuentran por encima de la gráfica
-                cantidadPuntosFuera100 += 1
+                cantidadPuntosFuera += 1
             End If
         Next
 
         ' Agregar ambas series al Chart
-        puntos = 100
-        Chart1.Series.Add(seriesFuncion)
-        Chart1.Series.Add(seriesAleatorios)
+        chart.Series.Add(seriesFuncion)
+        chart.Series.Add(seriesAleatorios)
         mathArea = AbsoluteValueArea(limiteInferior1, limiteSuperior1)
         areaConocida = ladoCuadrado * ladoCuadrado
-        AreaAproximada = (areaConocida * cantidadPuntosDentro100) / puntos
+        AreaAproximada = (areaConocida * cantidadPuntosDentro) / cantidadPuntos
         Diferencia = Math.Abs(AreaAproximada - mathArea)
         Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
-        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro100)) * 100
+        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro)) * 100
 
 
-        DataGridView1.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
+        DataGridView1.Rows.Add(cantidadPuntos, areaConocida, mathArea, cantidadPuntosDentro, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
+        PintarFilasDiferentes(DataGridView1)
+        mathArea = 0
+        areaConocida = 0
+        AreaAproximada = 0
+        Diferencia = 0
+        Porcentaje = 0
+        ErrorAprox = 0
+        cantidadPuntosDentro = 0
+        cantidadPuntosFuera = 0
+    End Function
+    Private Sub CienPuntos_Click(sender As Object, e As EventArgs) Handles CienPuntos.Click
+        ' Obtener el texto de lo que se ingresa en el text x0
+        limiteInferior1 = Double.Parse(LimiteInferior.Text)
+        ' Obtener el texto de lo que se ingresa en el text x1
+        limiteSuperior1 = Double.Parse(LimiteSuperior.Text)
+        ' Iteracion 1 100 puntos
+        hacerPuntos(Chart1, 100, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart1, "Gráfico con 100 puntos")
+        ' Iteracion 2 100 puntos
+        hacerPuntos(Chart2, 100, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart2, "Gráfico con 100 puntos")
+        ' Iteracion 3 100 puntos
+        hacerPuntos(Chart6, 100, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart6, "Gráfico con 100 puntos")
 
+        ' Iteracion 1 200 puntos
+        hacerPuntos(Chart200, 200, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart200, "Gráfico con 200 puntos")
+        ' Iteracion 2 200 puntos
+        hacerPuntos(Chart3, 200, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart3, "Gráfico con 200 puntos")
+        ' Iteracion 3 200 puntos
+        hacerPuntos(Chart7, 200, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart7, "Gráfico con 200 puntos")
 
-        For i As Integer = 1 To 200
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            Dim xAleatorio200, yAleatorio200 As Double
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio200 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-                yAleatorio200 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-            Else
-                xAleatorio200 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio200 = limiteSuperior1 * rnd.NextDouble()
-            End If
+        ' Iteracion 1 500 puntos
+        hacerPuntos(Chart500, 500, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart500, "Gráfico con 500 puntos")
+        ' Iteracion 2 200 puntos
+        hacerPuntos(Chart4, 500, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart4, "Gráfico con 500 puntos")
+        ' Iteracion 3 200 puntos
+        hacerPuntos(Chart8, 500, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart8, "Gráfico con 500 puntos")
 
-            ' Verificar si el punto aleatorio está debajo de la curva de la función
-            If yAleatorio200 < Math.Abs(xAleatorio200) Then
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de rojo
-                seriesAleatorios200.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio200, yAleatorio200) With {.Color = Color.Red})
-                ' Sumar uno a la cantidad de puntos que se encuentran bajo el area
-                cantidadPuntosDentro200 += 1
+        ' Iteracion 1 1000 puntos
+        hacerPuntos(Chart1000, 1000, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart1000, "Gráfico con 1000 puntos")
+        ' Iteracion 2 200 puntos
+        hacerPuntos(Chart5, 1000, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart5, "Gráfico con 1000 puntos")
+        ' Iteracion 3 200 puntos
+        hacerPuntos(Chart9, 1000, limiteInferior1, limiteSuperior1)
+        ConfigurarGrafico(Chart9, "Gráfico con 1000 puntos")
 
-            Else
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de azul
-                seriesAleatorios200.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio200, yAleatorio200) With {.Color = Color.Blue})
-                ' Sumar uno a la cantidad de puntos que se encuentran por encima de la gráfica
-                cantidadPuntosFuera200 += 1
-            End If
-        Next
-        Chart200.Series.Add(seriesFuncion)
-        Chart200.Series.Add(seriesAleatorios200)
-        puntos = 200
-        mathArea = AbsoluteValueArea(limiteInferior1, limiteSuperior1)
-        areaConocida = ladoCuadrado * ladoCuadrado
-        AreaAproximada = (areaConocida * cantidadPuntosDentro200) / puntos
-        Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
-        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro200)) * 100
-
-
-        DataGridView2.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
-
-        For i As Integer = 1 To 500
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            Dim xAleatorio500, yAleatorio500 As Double
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio500 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-                yAleatorio500 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-            Else
-                xAleatorio500 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio500 = limiteSuperior1 * rnd.NextDouble()
-            End If
-
-            ' Verificar si el punto aleatorio está debajo de la curva de la función
-            If yAleatorio500 < Math.Abs(xAleatorio500) Then
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de rojo
-                seriesAleatorios500.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio500, yAleatorio500) With {.Color = Color.Gold})
-                ' Sumar uno a la cantidad de puntos que se encuentran bajo el area
-                cantidadPuntosDentro500 += 1
-
-            Else
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de azul
-                seriesAleatorios500.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio500, yAleatorio500) With {.Color = Color.Blue})
-                ' Sumar uno a la cantidad de puntos que se encuentran por encima de la gráfica
-                cantidadPuntosFuera500 += 1
-            End If
-        Next
-        Chart500.Series.Add(seriesFuncion)
-        Chart500.Series.Add(seriesAleatorios500)
-        puntos = 500
-        mathArea = AbsoluteValueArea(limiteInferior1, limiteSuperior1)
-        areaConocida = ladoCuadrado * ladoCuadrado
-        AreaAproximada = (areaConocida * cantidadPuntosDentro500) / puntos
-        Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
-        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro500)) * 100
-
-
-        DataGridView3.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro100, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
-
-
-        For i As Integer = 1 To 1000
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            Dim xAleatorio1000, yAleatorio1000 As Double
-            ' Generar coordenadas x e y aleatorias dentro del rango
-            If limiteSuperior1 And limiteInferior1 > 0 Then
-                xAleatorio1000 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-                yAleatorio1000 = limiteInferior1 + (rnd.NextDouble() * (limiteSuperior1 - limiteInferior1))
-            Else
-                xAleatorio1000 = limiteInferior1 + ladoCuadrado * rnd.NextDouble()
-                yAleatorio1000 = limiteSuperior1 * rnd.NextDouble()
-            End If
-
-            ' Verificar si el punto aleatorio está debajo de la curva de la función
-            If yAleatorio1000 < Math.Abs(xAleatorio1000) Then
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de rojo
-                seriesAleatorios1000.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio1000, yAleatorio1000) With {.Color = Color.Red})
-                ' Sumar uno a la cantidad de puntos que se encuentran bajo el area
-                cantidadPuntosDentro1000 += 1
-
-            Else
-                ' Agregar el punto a la serie de puntos aleatorios y pintarlo de azul
-                seriesAleatorios1000.Points.Add(New DataVisualization.Charting.DataPoint(xAleatorio1000, yAleatorio1000) With {.Color = Color.Blue})
-                ' Sumar uno a la cantidad de puntos que se encuentran por encima de la gráfica
-                cantidadPuntosFuera1000 += 1
-            End If
-        Next
-        Chart1000.Series.Add(seriesFuncion)
-        Chart1000.Series.Add(seriesAleatorios1000)
-        puntos = 1000
-        mathArea = AbsoluteValueArea(limiteInferior1, limiteSuperior1)
-        areaConocida = ladoCuadrado * ladoCuadrado
-        AreaAproximada = (areaConocida * cantidadPuntosDentro1000) / puntos
-        Diferencia = Math.Abs(AreaAproximada - mathArea)
-        Porcentaje = (Math.Abs(Diferencia / mathArea)) * 100
-        ErrorAprox = (1 / Math.Sqrt(cantidadPuntosDentro1000)) * 100
-
-
-        DataGridView4.Rows.Add(puntos, areaConocida, mathArea, cantidadPuntosDentro1000, AreaAproximada, Diferencia, Math.Round(Porcentaje, 2), Math.Round(ErrorAprox, 2))
-
-
+        PintarFilasDiferentes(DataGridView1)
     End Sub
 
     Function AbsoluteValueArea(limiteInferior As Double, limiteSuperior As Double) As Double
@@ -262,4 +163,45 @@
 
         Return totalArea
     End Function
+
+
+    Private Sub PintarFilasDiferentes(dataGridView As DataGridView)
+        ' Se eligen los 3 colores para diferenciar cada una de las respuestas
+        Dim color1 As Color = Color.LightGray
+        Dim color2 As Color = Color.LightBlue
+        Dim color3 As Color = Color.LightGreen
+
+        ' Realizar un ciclo para recorrer todas las filas de la tabla
+        For i As Integer = 0 To dataGridView.Rows.Count - 1
+            ' Se verifica si el índice i de la fila actual está dentro del rango de 0 a 2
+            If i Mod 9 < 3 Then
+                ' Cambiar el color de la fila en i
+                dataGridView.Rows(i).DefaultCellStyle.BackColor = color1
+                ' Se verifica si el índice i de la fila actual está dentro del rango de 3 a 5
+            ElseIf i Mod 9 < 6 Then
+                ' Cambiar el color de la fila en i
+                dataGridView.Rows(i).DefaultCellStyle.BackColor = color2
+            Else
+                ' Se verifica si el índice i de la fila actual está dentro del rango de 6 a 8 y Cambiar el color de la fila en i
+                dataGridView.Rows(i).DefaultCellStyle.BackColor = color3
+            End If
+        Next
+    End Sub
+
+
+    Private Sub ConfigurarGrafico(chart As DataVisualization.Charting.Chart, titulo As String)
+        chart.Titles.Clear()
+        chart.Titles.Add(titulo)
+
+        ' Configurar el eje X para mostrar solo los valores enteros
+        chart.ChartAreas(0).AxisX.Interval = 1
+        chart.ChartAreas(0).AxisX.LabelStyle.Format = "0"
+
+        ' Aquí puedes agregar otras configuraciones adicionales al gráfico si lo deseas
+        ' Por ejemplo, personalizar colores, estilos, leyendas, etc.
+        ' chart.Series...
+        ' chart.Legends...
+    End Sub
+
+
 End Class
