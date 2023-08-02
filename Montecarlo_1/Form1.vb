@@ -142,11 +142,9 @@
 
     Function AbsoluteValueArea(limiteInferior As Double, limiteSuperior As Double) As Double
         Dim area1, area2 As Double
-
         If (limiteInferior And limiteSuperior) < 0 Then
             'area1 = -((limiteInferior) * (limiteInferior)) / 2
             area1 = -(Math.Pow(limiteInferior, 2)) / 2
-
             area2 = -(limiteSuperior * limiteSuperior) / 2
             totalArea = Math.Abs(area1 - area2)
         ElseIf (limiteInferior And limiteInferior) > 0 Then
@@ -158,9 +156,6 @@
             area2 = (limiteSuperior * limiteSuperior) / 2
             totalArea = area2 + area1
         End If
-
-
-
         Return totalArea
     End Function
 
@@ -196,11 +191,6 @@
         ' Configurar el eje X para mostrar solo los valores enteros
         chart.ChartAreas(0).AxisX.Interval = 1
         chart.ChartAreas(0).AxisX.LabelStyle.Format = "0"
-
-        ' Aquí puedes agregar otras configuraciones adicionales al gráfico si lo deseas
-        ' Por ejemplo, personalizar colores, estilos, leyendas, etc.
-        ' chart.Series...
-        ' chart.Legends...
     End Sub
 
 
