@@ -140,6 +140,40 @@
         ConfigurarGrafico(Chart9, "Gráfico con 1000 puntos")
 
         PintarFilasDiferentes(DataGridView1)
+        CienPuntos.Enabled = False
+        Button1.Enabled = True
+        Button1.BackColor = Color.Green
+        CienPuntos.BackColor = Color.Red
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ' Reiniciar todos los valores y configuraciones
+
+        ' Limpiar el contenido del DataGridView
+        DataGridView1.Rows.Clear()
+
+        ' Limpiar los gráficos y volver a configurarlos
+        LimpiarGrafico(Chart1)
+        LimpiarGrafico(Chart2)
+        LimpiarGrafico(Chart3)
+        LimpiarGrafico(Chart4)
+        LimpiarGrafico(Chart5)
+        LimpiarGrafico(Chart6)
+        LimpiarGrafico(Chart7)
+        LimpiarGrafico(Chart8)
+        LimpiarGrafico(Chart9)
+        LimpiarGrafico(Chart200)
+        LimpiarGrafico(Chart500)
+        LimpiarGrafico(Chart1000)
+
+
+
+        ' Habilitar el botón CienPuntos nuevamente
+        CienPuntos.Enabled = True
+        ' Deshabilitar el botón Button1 después de reiniciar
+        Button1.Enabled = False
+        Button1.BackColor = Color.Red
+        CienPuntos.BackColor = Color.Green
     End Sub
 
     Function AbsoluteValueArea(limiteInferior As Double, limiteSuperior As Double) As Double
@@ -195,5 +229,34 @@
         chart.ChartAreas(0).AxisX.LabelStyle.Format = "0"
     End Sub
 
+    Private Sub LimiteInferior_KeyPress(sender As Object, e As KeyPressEventArgs) Handles LimiteInferior.KeyPress
+        ' Verificar si el carácter ingresado es un número o el signo "-" para números negativos
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "-" AndAlso e.KeyChar <> ControlChars.Back Then
+            ' Si no es un número válido, cancelar la entrada del carácter
+            e.Handled = True
+
+            ' Mostrar una alerta
+            MessageBox.Show("Solo se permiten números positivos o negativos en este campo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub LimiteSuperior_KeyPress(sender As Object, e As KeyPressEventArgs) Handles LimiteSuperior.KeyPress
+        ' Verificar si el carácter ingresado es un número o el signo "-" para números negativos
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "-" AndAlso e.KeyChar <> ControlChars.Back Then
+            ' Si no es un número válido, cancelar la entrada del carácter
+            e.Handled = True
+
+            ' Mostrar una alerta
+            MessageBox.Show("Solo se permiten números positivos o negativos en este campo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub LimpiarGrafico(chart As DataVisualization.Charting.Chart)
+        chart.Series.Clear()
+        chart.Titles.Clear()
+        ' Configurar el eje X para mostrar solo los valores enteros
+        chart.ChartAreas(0).AxisX.Interval = 1
+        chart.ChartAreas(0).AxisX.LabelStyle.Format = "0"
+    End Sub
 
 End Class
